@@ -384,7 +384,7 @@ public sealed partial class Floating : IAsyncDisposable
         switch (State.Category)
         {
             case FloatingCategory.Identifier:
-               await Compute(Anchor);
+                await Compute(Anchor);
                 break;
             case FloatingCategory.Element:
                 await Compute(Wrapper?.Ref);

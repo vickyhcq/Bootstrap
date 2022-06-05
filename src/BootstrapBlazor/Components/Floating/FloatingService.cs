@@ -7,7 +7,7 @@ namespace BootstrapBlazor.Components;
 /// <summary>
 /// <see cref="Floating"/> 服务类
 /// </summary>
-public class FloatingService:BootstrapServiceBase<FloatingOption>
+public class FloatingService : BootstrapServiceBase<FloatingOption>
 {
     /// <summary>
     /// 显示方法

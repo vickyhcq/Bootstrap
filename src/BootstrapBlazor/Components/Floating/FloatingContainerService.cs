@@ -74,7 +74,7 @@ internal sealed class FloatingContainerService : IDisposable
     public async void UnregisterContext(FloatingContext context)
     {
         var key = context.State.ContainerId;
-        if (!string.IsNullOrWhiteSpace(key) &&_containers.ContainsKey(key))
+        if (!string.IsNullOrWhiteSpace(key) && _containers.ContainsKey(key))
         {
             await _containers[key].UnregisterContext(context);
         }

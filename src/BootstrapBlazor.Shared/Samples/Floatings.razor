@@ -5,7 +5,7 @@
 @implements IAsyncDisposable
 
 <style type="text/css">
-    .test-container{
+    .test-container {
         overflow: hidden;
         position: relative;
         tab-size: 4;
@@ -20,7 +20,7 @@
         padding: .5rem;
     }
 
-    .test-btn{
+    .test-btn {
         -webkit-text-size-adjust: 100%;
         tab-size: 4;
         color-scheme: dark;
@@ -43,7 +43,8 @@
         transition-timing-function: cubic-bezier(.4,0,.2,1);
         transition-duration: .15s;
     }
-    .test-dot{
+
+    .test-dot {
         -webkit-text-size-adjust: 100%;
         tab-size: 4;
         color-scheme: dark;
@@ -64,7 +65,7 @@
         border-color: rgb(87 89 105/var(--tw-border-opacity));
     }
 
-    .test-trigger{
+    .test-trigger {
         -webkit-text-size-adjust: 100%;
         tab-size: 4;
         color-scheme: dark;
@@ -92,7 +93,7 @@
     }
 
     .test-floating {
-        position:absolute;
+        position: absolute;
         background: #333;
         color: white;
         font-weight: bold;
@@ -111,14 +112,13 @@
     }
 </style>
 
-
-
 <h3>@Localizer["Title"]</h3>
+
 <h4>@Localizer["Describe"]</h4>
 
 <DemoBlock Title="@Localizer["Normal01"]" Introduction="@Localizer["NormalIntro01"]" Name="Normal">
     <div class="test-container">
-        @foreach(var item in Dots)
+        @foreach (var item in Dots)
         {
             <button @onclick="@(e=>Placement01 = item.Key)" class="test-btn" style="@item.Value">
                 <div class="test-dot"></div>
@@ -130,19 +130,21 @@
         </Floating>
     </div>
 </DemoBlock>
-<Tips class="mt-3"> 
+
+<Tips class="mt-3">
     <p>@((MarkupString)Localizer["Tips0101"].Value)</p>
 </Tips>
-
 
 <DemoBlock Title="@Localizer["Normal02"]" Introduction="@Localizer["NormalIntro02"]" Name="Complex">
     <div class="row g-3">
         <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
             <button class="btn btn-primary" role="button"
-                @ref="@Wrapper02.Ref"
-                @onclick="(e=> Visible0201 = !Visible0201)"
-                @onmouseenter="(e=> Visible0201 = true)"
-                @onmouseleave="(e=> Visible0201 = false)">@Localizer["DemoAnchor0201"]</button>
+                    @ref="@Wrapper02.Ref"
+                    @onclick="(e=> Visible0201 = !Visible0201)"
+                    @onmouseenter="(e=> Visible0201 = true)"
+                    @onmouseleave="(e=> Visible0201 = false)">
+                @Localizer["DemoAnchor0201"]
+            </button>
         </div>
         <div class="col-6 col-sm-4 col-md-3 col-lg-auto">
             <Button @ref="@Button02" Color="Color.Secondary" OnClick="(()=> Visible0202=!Visible0202)">@Localizer["DemoAnchor0202"]</Button>
@@ -161,23 +163,22 @@
     </Floating>
 
     <Floating Class="test-floating"
-        Selecter=".DemoDesc0201"
-        Visible="true"
-        AutoUpdate="true"
-        Placement="Placement.Right"
-        ShiftPadding="5"
-        AxisOffset="6"
-        UseArrow="true"
-        ArrowStyleClass="test-arrow"
-        ArrowOffset="-4">
+              Selecter=".DemoDesc0201"
+              Visible="true"
+              AutoUpdate="true"
+              Placement="Placement.Right"
+              ShiftPadding="5"
+              AxisOffset="6"
+              UseArrow="true"
+              ArrowStyleClass="test-arrow"
+              ArrowOffset="-4">
         <b>@Localizer["DemoDesc0201"]</b>
     </Floating>
 </DemoBlock>
-<Tips class="mt-3"> 
+<Tips class="mt-3">
     <p>@((MarkupString)Localizer["Tips0201"].Value)</p>
     <p>@((MarkupString)Localizer["Tips0202"].Value)</p>
 </Tips>
-
 
 <DemoBlock Title="@Localizer["Normal03"]" Introduction="@Localizer["NormalIntro03"]" Name="Container">
     <div class="row g-3">
@@ -186,14 +187,14 @@
         </div>
     </div>
 
-    <FloatingContainer Id="myContainer"/>
+    <FloatingContainer Id="myContainer" />
 
     <Floating Class="modal-content" Style="width:60rem;"
-        ContainerId="myContainer"
-        Anchor="test-container"
-        Visible="@Visible03"
-        AutoUpdate="true"
-        Placement="Placement.RightStart">
+              ContainerId="myContainer"
+              Anchor="test-container"
+              Visible="@Visible03"
+              AutoUpdate="true"
+              Placement="Placement.RightStart">
         <Card>
             <CardHeader>@((MarkupString)Localizer["DemoAnchor0302"].Value)</CardHeader>
             <CardBody>
@@ -209,12 +210,12 @@
         </Card>
     </Floating>
 </DemoBlock>
-<Tips class="mt-3"> 
+
+<Tips class="mt-3">
     <p>@((MarkupString)@Localizer["Tips0301"].Value)</p>
     <p>@((MarkupString)@Localizer["Tips0302"].Value)</p>
     <p>@((MarkupString)@Localizer["Tips0303"].Value)</p>
 </Tips>
-
 
 <DemoBlock Title="@Localizer["Normal04"]" Introduction="@Localizer["NormalIntro04"]" Name="Service">
     <div class="row g-3">
@@ -226,15 +227,16 @@
         </div>
     </div>
 
-    <FloatingContainer Id="myContainer2"/>
+    <FloatingContainer Id="myContainer2" />
 </DemoBlock>
-<Tips class="mt-3"> 
+
+<Tips class="mt-3">
     <p>@((MarkupString)@Localizer["Tips0401"].Value)</p>
     <p>@((MarkupString)@Localizer["Tips0402"].Value)</p>
     <p>@((MarkupString)@Localizer["Tips0403"].Value)</p>
 </Tips>
 
-<DemoBlock Title="@Localizer["Normal05"]" Introduction="@Localizer["NormalIntro05"]"  Name="vitural">
+<DemoBlock Title="@Localizer["Normal05"]" Introduction="@Localizer["NormalIntro05"]" Name="vitural">
     <div class="test-container" style="float:left;margin-right:0.5rem;" @onclick="@UpdatePosition0501">
         <b>@((MarkupString)@Localizer["DemoAnchor0501"].Value)</b>
     </div>
@@ -244,91 +246,90 @@
     </div>
 
     <div class="test-container" oncontextmenu="return false;"
-        @onmouseup="@UpdatePosition0503"
-        @onmousemove="@UpdatePosition0504"
-        @onclick="@(e=> Visible0503 = false)">
+         @onmouseup="@UpdatePosition0503"
+         @onmousemove="@UpdatePosition0504"
+         @onclick="@(e=> Visible0503 = false)">
         <b>@((MarkupString)@Localizer["DemoAnchor0503"].Value)</b>
     </div>
 
     <Floating Class="test-floating"
-        Offset="@Offset0501"
-        Visible="@Visible0501"
-        AutoUpdate="true"
-        Placement="Placement.Right"
-        ShiftPadding="5"
-        AxisOffset="6"
-        UseArrow="true"
-        ArrowStyleClass="test-arrow"
-        ArrowOffset="-4">
+              Offset="@Offset0501"
+              Visible="@Visible0501"
+              AutoUpdate="true"
+              Placement="Placement.Right"
+              ShiftPadding="5"
+              AxisOffset="6"
+              UseArrow="true"
+              ArrowStyleClass="test-arrow"
+              ArrowOffset="-4">
         <b>@Localizer["DemoDesc0501"]</b>
     </Floating>
 
     <Floating Class="test-floating"
-        Offset="@Offset0502"
-        Visible="@Visible0502"
-        AutoUpdate="true"
-        Placement="Placement.Right"
-        ShiftPadding="5"
-        AxisOffset="6"
-        UseArrow="true"
-        ArrowStyleClass="test-arrow"
-        ArrowOffset="-4">
+              Offset="@Offset0502"
+              Visible="@Visible0502"
+              AutoUpdate="true"
+              Placement="Placement.Right"
+              ShiftPadding="5"
+              AxisOffset="6"
+              UseArrow="true"
+              ArrowStyleClass="test-arrow"
+              ArrowOffset="-4">
         <b>@Localizer["DemoDesc0502"]</b>
     </Floating>
 
     <Floating Offset="@Offset0503"
-        Visible="@Visible0503"
-        AutoUpdate="true"
-        Placement="Placement.RightStart">
+              Visible="@Visible0503"
+              AutoUpdate="true"
+              Placement="Placement.RightStart">
         <div class="cascade menu dropdown-menu shadow show">
-	        <div class="has-leaf dropdown-item">
-		        <span>Menu item</span>
-		        <i class="fa fa-angle-down nav-link-right"></i>
-		        <ul class="nav sub-menu">
-			        <li>
-				        <div class="has-leaf nav-link">
-					        <span>Menu item</span>
-					        <i class="fa fa-angle-down nav-link-right"></i>
-					        <ul class="nav sub-menu">
-						        <li><div class="nav-link"><span>Menu item</span></div></li>
-					        </ul>
-				        </div>
-			        </li>
-			        <li><div class="nav-link"><span>Menu item</span></div></li>
-			        <li><div class="nav-link"><span>Menu item</span></div></li>
-			        <li><div class="nav-link"><span>Menu item</span></div></li>
-		        </ul>
-	        </div>
-	        <div class="has-leaf dropdown-item">
-		        <span>Menu item</span>
-		        <i class="fa fa-angle-down nav-link-right"></i>
-		        <ul class="nav sub-menu">
-			        <li><div class="nav-link"><span>Menu item</span></div></li>
-			        <li><div class="nav-link"><span>Menu item</span></div></li>
-		        </ul>
-	        </div>
-	        <div class="dropdown-item">Menu item</div>
+            <div class="has-leaf dropdown-item">
+                <span>Menu item</span>
+                <i class="fa fa-angle-down nav-link-right"></i>
+                <ul class="nav sub-menu">
+                    <li>
+                        <div class="has-leaf nav-link">
+                            <span>Menu item</span>
+                            <i class="fa fa-angle-down nav-link-right"></i>
+                            <ul class="nav sub-menu">
+                                <li><div class="nav-link"><span>Menu item</span></div></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><div class="nav-link"><span>Menu item</span></div></li>
+                    <li><div class="nav-link"><span>Menu item</span></div></li>
+                    <li><div class="nav-link"><span>Menu item</span></div></li>
+                </ul>
+            </div>
+            <div class="has-leaf dropdown-item">
+                <span>Menu item</span>
+                <i class="fa fa-angle-down nav-link-right"></i>
+                <ul class="nav sub-menu">
+                    <li><div class="nav-link"><span>Menu item</span></div></li>
+                    <li><div class="nav-link"><span>Menu item</span></div></li>
+                </ul>
+            </div>
+            <div class="dropdown-item">Menu item</div>
         </div>
     </Floating>
 </DemoBlock>
-<Tips class="mt-3"> 
+
+<Tips class="mt-3">
     <p>@((MarkupString)@Localizer["Tips0501"].Value)</p>
     <p>@((MarkupString)@Localizer["Tips0502"].Value)</p>
 </Tips>
 
-
 <p>@((MarkupString)Localizer["Att00"].Value)</p>
 <AttributeTable Items="@GetAttributes()" />
 
-@code{
-
-RenderFragment RenderByService =>
-@<Card>
-    <CardHeader>@((MarkupString)Localizer["DemoDesc0401"].Value)</CardHeader>
-    <CardBody>
-        <Scroll Height="20rem">
-            <EditorForms/>
-        </Scroll>
-    </CardBody>
-</Card>;
+@code {
+    RenderFragment RenderByService =>
+    @<Card>
+        <CardHeader>@((MarkupString)Localizer["DemoDesc0401"].Value)</CardHeader>
+        <CardBody>
+            <Scroll Height="20rem">
+                <EditorForms />
+            </Scroll>
+        </CardBody>
+    </Card>;
 }
