@@ -42,9 +42,4 @@
     <None Include="wwwroot\src\*.*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\bundle\" />
-    <Folder Include="wwwroot\js\" />
-  </ItemGroup>
-
 </Project>
