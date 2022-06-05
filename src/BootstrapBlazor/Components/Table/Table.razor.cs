@@ -48,6 +48,7 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
         .AddClass("table-excel", IsExcel)
         .AddClass("table-bordered", IsBordered)
         .AddClass("table-striped table-hover", IsStriped)
+        .AddClass("table-wrap", HeaderTextWrap && !IsFixedHeader)
         .Build();
 
     /// <summary>
@@ -542,6 +543,12 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
     public bool AllowResizing { get; set; }
 
     /// <summary>
+    /// 获得/设置 是否表头允许折行 默认 false 不折行
+    /// </summary>
+    [Parameter]
+    public bool HeaderTextWrap { get; set; }
+
+    /// <summary>
     /// 获得/设置 是否斑马线样式 默认为 false
     /// </summary>
     /// <remarks>此参数在 <see cref="IsExcel"/> 模式下不生效</remarks>
@@ -747,7 +754,7 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
             RenderMode = TableRenderMode.Table;
         }
 
-        RowItemsCache = null;
+        RowsCache = null;
 
         if (IsExcel)
         {
@@ -762,7 +769,7 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
             // 动态列模式
             ResetDynamicContext();
 
-            ColumnVisibles = Columns.Select(i => new ColumnVisibleItem { FieldName = i.GetFieldName(), Visible = i.Visible }).ToList();
+            ColumnVisibles.AddRange(Columns.Select(i => new ColumnVisibleItem { FieldName = i.GetFieldName(), Visible = i.Visible }));
 
             // set default sortName
             var col = Columns.FirstOrDefault(i => i.Sortable && i.DefaultSort);
@@ -780,8 +787,6 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
     /// <param name="firstRender"></param>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         if (firstRender)
         {
             if (ShowSearch)
@@ -817,7 +822,7 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
                 await OnColumnCreating(Columns);
             }
 
-            ColumnVisibles = Columns.Select(i => new ColumnVisibleItem { FieldName = i.GetFieldName(), Visible = i.Visible }).ToList();
+            ColumnVisibles.AddRange(Columns.Select(i => new ColumnVisibleItem { FieldName = i.GetFieldName(), Visible = i.Visible }));
 
             // set default sortName
             var col = Columns.FirstOrDefault(i => i.Sortable && i.DefaultSort);
@@ -909,14 +914,17 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
     /// </summary>
     private IEnumerable<TItem>? QueryItems { get; set; }
 
-    private List<TItem>? RowItemsCache { get; set; }
+    private List<TItem>? RowsCache { get; set; }
 
-    private List<TItem> RowItems
+    /// <summary>
+    /// 获得 当前表格所有 Rows 集合
+    /// </summary>
+    public List<TItem> Rows
     {
         get
         {
-            RowItemsCache ??= Items?.ToList() ?? QueryItems?.ToList() ?? new List<TItem>();
-            return IsTree ? GetTreeRows() : RowItemsCache;
+            RowsCache ??= Items?.ToList() ?? QueryItems?.ToList() ?? new List<TItem>();
+            return IsTree ? GetTreeRows() : RowsCache;
         }
     }
 
@@ -1148,7 +1156,7 @@ public partial class Table<TItem> : BootstrapComponentBase, IDisposable, ITable 
         .AddClass("is-dbcell", trigger)
         .Build();
 
-    private bool IsShowEmpty => ShowEmpty && !RowItems.Any();
+    private bool IsShowEmpty => ShowEmpty && !Rows.Any();
 
     private int GetColumnCount()
     {

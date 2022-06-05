@@ -962,6 +962,12 @@ public sealed partial class NavMenu
             },
             new()
             {
+                IsNew = true,
+                Text = Localizer["RibbonTab"],
+                Url = "ribbontabs"
+            },
+            new()
+            {
                 Text = Localizer["Steps"],
                 Url = "stepss"
             },

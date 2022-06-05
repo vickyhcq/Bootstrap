@@ -3,7 +3,6 @@
 // Website: https://www.blazor.zone or https://argozhang.github.io/
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 
 namespace BootstrapBlazor.Components;
 
@@ -13,16 +12,10 @@ namespace BootstrapBlazor.Components;
 public partial class LinkButton
 {
     /// <summary>
-    /// 获得/设置 显示文本 默认为 null
-    /// </summary>
-    [Parameter]
-    public string? Text { get; set; }
-
-    /// <summary>
     /// 获得/设置 Url 默认为 #
     /// </summary>
     [Parameter]
-    public string Url { get; set; } = "#";
+    public string? Url { get; set; }
 
     /// <summary>
     /// 获得/设置 Tooltip 显示文字 默认为 null
@@ -37,10 +30,10 @@ public partial class LinkButton
     public string? ImageUrl { get; set; }
 
     /// <summary>
-    /// 获得/设置 显示图标
+    /// 获得/设置 是否为垂直布局 默认 false
     /// </summary>
     [Parameter]
-    public string? Icon { get; set; }
+    public bool IsVertical { get; set; }
 
     /// <summary>
     /// 获得/设置 Tooltip 显示位置 默认为 Top
@@ -48,21 +41,32 @@ public partial class LinkButton
     [Parameter]
     public Placement TooltipPlacement { get; set; } = Placement.Top;
 
-    /// <summary>
-    /// 获得/设置 子组件
-    /// </summary>
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    private bool Prevent => (Url?.StartsWith('#') ?? true) || IsDisabled;
 
-    /// <summary>
-    /// 获得/设置 点击事件回调方法
-    /// </summary>
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    private string TagName => IsDisabled ? "button" : "a";
 
-    private bool Prevent => Url.StartsWith('#');
+    private string? UrlString => IsDisabled ? null : Url;
 
     private string? ClassString => CssBuilder.Default("link-button")
+        .AddClass("is-vertical", IsVertical)
+        .AddClass($"btn-outline-{Color.ToDescriptionString()}", IsOutline)
+        .AddClass($"link-{Color.ToDescriptionString()}", Color != Color.None && !IsOutline && !IsDisabled)
+        .AddClass($"btn-{Size.ToDescriptionString()}", Size != Size.None)
+        .AddClass("btn-block", IsBlock)
+        .AddClass("is-round", ButtonStyle == ButtonStyle.Round)
+        .AddClass("is-circle", ButtonStyle == ButtonStyle.Circle)
         .AddClassFromAttributes(AdditionalAttributes)
         .Build();
+
+    private async Task OnClickButton()
+    {
+        if (OnClickWithoutRender != null)
+        {
+            await OnClickWithoutRender();
+        }
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync();
+        }
+    }
 }
