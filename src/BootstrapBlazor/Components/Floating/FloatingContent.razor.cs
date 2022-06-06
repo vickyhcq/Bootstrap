@@ -36,7 +36,6 @@ public partial class FloatingContent : IDisposable
     /// </summary>
     protected override void OnInitialized()
     {
-        base.OnInitialized();
         if (Context != null)
         {
             Context.FragmentChanged += OnFragmentChanged;
@@ -50,8 +49,6 @@ public partial class FloatingContent : IDisposable
     /// <param name="firstRender"></param>
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await base.OnAfterRenderAsync(firstRender);
-
         //执行延迟的方法
         if (Context?.ExecuteAfterRenderQueue?.Count > 0)
         {

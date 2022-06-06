@@ -9,9 +9,9 @@ namespace BootstrapBlazor.Components;
 /// <summary>
 /// <see cref="Floating"/> 组件控制上下文
 /// </summary>
-public sealed class FloatingContext
+public class FloatingContext
 {
-    internal EventHandler<bool>? FragmentChanged;
+    internal EventHandler<bool>? FragmentChanged { get; set; }
 
     /// <summary>
     /// 延迟到组件渲染完成后执行的方法队列

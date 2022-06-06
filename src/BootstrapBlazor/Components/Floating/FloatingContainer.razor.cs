@@ -9,7 +9,7 @@ namespace BootstrapBlazor.Components;
 /// <summary>
 /// <see cref="Floating"/> 容器组件
 /// </summary>
-public sealed partial class FloatingContainer : IDisposable
+public partial class FloatingContainer : IDisposable
 {
     private readonly Dictionary<string, FloatingContext> _contexts = new();
 

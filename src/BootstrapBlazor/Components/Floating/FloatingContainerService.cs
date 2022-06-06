@@ -7,7 +7,7 @@ namespace BootstrapBlazor.Components;
 /// <summary>
 /// <see cref="Floating"/> 容器服务类
 /// </summary>
-internal sealed class FloatingContainerService : IDisposable
+internal class FloatingContainerService : IDisposable
 {
     private readonly Dictionary<string, FloatingContainer> _containers = new();
 

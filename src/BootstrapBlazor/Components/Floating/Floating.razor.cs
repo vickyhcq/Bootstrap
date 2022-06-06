@@ -9,7 +9,7 @@ namespace BootstrapBlazor.Components;
 /// <summary>
 /// 浮动层 组件
 /// </summary>
-public sealed partial class Floating : IAsyncDisposable
+public partial class Floating : IAsyncDisposable
 {
     private FloatingContext? Context { get; set; }
 
@@ -416,7 +416,7 @@ public sealed partial class Floating : IAsyncDisposable
     }
 
     /// <summary>
-    /// Dispose
+    /// Dispose 方法
     /// </summary>
     /// <param name="disposing"></param>
     private async ValueTask DisposeAsyncCore(bool disposing)
@@ -437,7 +437,6 @@ public sealed partial class Floating : IAsyncDisposable
     /// <summary>
     /// Dispose 方法
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public async ValueTask DisposeAsync()
     {
         await DisposeAsyncCore(true);

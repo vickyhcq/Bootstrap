@@ -60,38 +60,39 @@ public partial class Floatings
     /// 4
     /// </summary>
     /// <param name="e"></param>
-    private async void ButtonClick0401(MouseEventArgs e)
-        => await Service.Show(new FloatingOption()
-        {
-            Selecter = ".floating-service",
-            Placement = Placement.TopStart,
-            Position = Position.Fixed,
-            ChildContent = RenderByService,
-            ContainerId = "myContainer21",
-            //AxisOffset = 0,
-            UseFlip = false,
-            //ShiftPadding = 0,
-            AutoHide = true,
-            AutoUpdate = true,
-            //UseArrow = false,
-            //ArrowOffset = 0,
-            //ArrowStyleClass = "",
-            Class = "modal-content",
-            Style = "width:60rem;",
-        });
+    private async void ButtonClick0401(MouseEventArgs e) => await Service.Show(new FloatingOption()
+    {
+        Selecter = ".floating-service",
+        Placement = Placement.TopStart,
+        Position = Position.Fixed,
+        ChildContent = RenderByService,
+        ContainerId = "myContainer21",
+        //AxisOffset = 0,
+        UseFlip = false,
+        //ShiftPadding = 0,
+        AutoHide = true,
+        AutoUpdate = true,
+        //UseArrow = false,
+        //ArrowOffset = 0,
+        //ArrowStyleClass = "",
+        Class = "modal-content",
+        Style = "width:60rem;",
+    });
 
     private async void ButtonClick0402(MouseEventArgs e) => await Service.Clear();
 
-
-    /// <summary>
-    /// 5
-    /// </summary>
     private ElementReference Element05 { get; set; }
+
     private readonly Offset Offset0501 = new();
+
     private readonly Offset Offset0502 = new();
+
     private readonly Offset Offset0503 = new();
+
     private bool Visible0501 { get; set; }
+
     private bool Visible0502 { get; set; }
+
     private bool Visible0503 { get; set; }
 
     private void UpdatePosition0501(MouseEventArgs e)
@@ -156,7 +157,6 @@ public partial class Floatings
         }";
 
     private JSModule<Floatings>? Module05 { get; set; }
-
 
     /// <summary>
     /// OnInitialized 方法
