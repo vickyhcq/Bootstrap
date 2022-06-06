@@ -1,0 +1,29 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/css/bootstrap.blazor.cherrymarkdown.min.css",
+    "inputFiles": [
+      "Components/**/*.css"
+    ]
+  },
+  {
+    "outputFileName": "Components/BaiduMap/BaiduMap.min.js",
+    "inputFiles": [
+      "Components/BaiduMap/BaiduMap.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/bootstrap.blazor.baidumap.min.js",
+    "inputFiles": [
+      "Components/**/*.min.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

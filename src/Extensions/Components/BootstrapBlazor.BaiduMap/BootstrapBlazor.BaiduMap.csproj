@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <Import Project="..\..\..\bundleconfig.props" />
+
+  <ItemGroup>
+    <Compile Include="..\..\..\BootstrapBlazor\Extensions\JSRuntimeExtensions.cs" Link="JSRuntimeExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css" />
+    <Folder Include="wwwroot\js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BootstrapBlazor\BootstrapBlazor.csproj" />
+  </ItemGroup>
+
+</Project>
