@@ -138,10 +138,38 @@ public class UtilityTest : BootstrapBlazorTestBase
         Assert.Equal("False", items.ElementAt(2).Text);
     }
 
+    [Fact]
+    public void GenerateColumns_Ok()
+    {
+        var cols = Utility.GenerateColumns<Foo>(col => col.GetFieldName() == "Name");
+        Assert.Single(cols);
+    }
+
+    [Fact]
+    public void CreateDisplayByFieldType_Ok()
+    {
+        var editor = new MockNullDisplayNameColumn("Name", typeof(string));
+        var fragment = new RenderFragment(builder => builder.CreateDisplayByFieldType(editor, new Foo() { Name = "Test-Display" }));
+        var cut = Context.Render(builder => builder.AddContent(0, fragment));
+        Assert.Equal("<div class=\"form-control is-display\">Test-Display</div>", cut.Markup);
+    }
+
+    [Fact]
+    public void CreateComponentByFieldType_Ok()
+    {
+        var editor = new MockNullDisplayNameColumn("Name", typeof(string));
+        var fragment = new RenderFragment(builder => builder.CreateComponentByFieldType(new BootstrapBlazorRoot(), editor, new Foo() { Name = "Test-Component" }));
+        var cut = Context.Render(builder => builder.AddContent(0, fragment));
+        Assert.Contains("class=\"form-control\" disabled=\"disabled\" value=\"Test-Component\"", cut.Markup);
+    }
+
     private class Dummy
     {
         public string? Name { get; set; }
+
         public bool? Complete { get; set; }
+
+        public string Field = "";
     }
 
     private class MockClone : ICloneable
@@ -205,5 +233,15 @@ public class UtilityTest : BootstrapBlazorTestBase
         var GetMenuItems = items2.CascadingMenu();
         Assert.NotNull(GetMenuItems);
         Assert.Equal(2, GetMenuItems.First().Items.Count());
+    }
+
+    private class MockNullDisplayNameColumn : MockTableColumn, IEditorItem
+    {
+        public MockNullDisplayNameColumn(string fieldName, Type propertyType) : base(fieldName, propertyType)
+        {
+
+        }
+
+        string IEditorItem.GetDisplayName() => null!;
     }
 }
