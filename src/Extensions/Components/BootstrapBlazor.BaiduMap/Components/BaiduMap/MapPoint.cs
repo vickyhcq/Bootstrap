@@ -5,33 +5,37 @@
 namespace BootstrapBlazor.Components;
 
 /// <summary>
-/// 百度地图配置信息
+/// 坐标
 /// </summary>
-public class BaiduMapOption
+public struct MapPoint
 {
+    /// <summary>
+    /// 默认构造
+    /// </summary>
+    public MapPoint()
+    {
+        X = 0;
+        Y = 0;
+    }
 
     /// <summary>
-    /// 组件Id
+    /// 默认值构造
     /// </summary>
-    public string? Id { get; set; }
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    public MapPoint(double x, double y)
+    {
+        X = x;
+        Y = y;
+    }
 
     /// <summary>
-    /// 地图Url
+    /// X轴坐标
     /// </summary>
-    public string? MapUrl { get; set; }
+    public double X { get; set; }
 
     /// <summary>
-    /// 中心点坐标
+    /// Y轴坐标
     /// </summary>
-    public MapPoint? Center { get; set; }
-
-    /// <summary>
-    /// 缩放比例
-    /// </summary>
-    public int? Zoom { get; set; }
-
-    /// <summary>
-    /// 是否开启滚轮缩放，默认为true
-    /// </summary>
-    public bool? EnableScrollWheelZoom { get; set; }
+    public double Y { get; set; }
 }

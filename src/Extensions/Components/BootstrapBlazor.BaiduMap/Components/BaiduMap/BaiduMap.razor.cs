@@ -19,16 +19,10 @@ public partial class BaiduMap
     public string? Ak { get; set; }
 
     /// <summary>
-    /// 默认位置横坐标
+    /// 中心点位置
     /// </summary>
     [Parameter]
-    public double? X { get; set; }
-
-    /// <summary>
-    /// 默认位置纵坐标
-    /// </summary>
-    [Parameter]
-    public double? Y { get; set; }
+    public MapPoint? Center { get; set; }
 
     /// <summary>
     /// 缩放级别
@@ -58,8 +52,7 @@ public partial class BaiduMap
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        Option.X = X;
-        Option.Y = Y;
+        Option.Center = Center;
         Option.Zoom = Zoom;
         Option.MapUrl = $"//api.map.baidu.com/api?type=webgl&v=1.0&ak={Ak}";
         Option.Id = Id;

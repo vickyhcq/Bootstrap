@@ -5,7 +5,7 @@
         LoadBaiduMapScript(value.mapUrl).then((BMapGL) => {
             console.log(BMapGL);
             var map = new BMapGL.Map(value.id);
-            map.centerAndZoom(new BMapGL.Point(value.x, value.y), value.zoom); // 初始化地图,设置中心点坐标和地图级别
+            map.centerAndZoom(new BMapGL.Point(value.center.x, value.center.y), value.zoom); // 初始化地图,设置中心点坐标和地图级别
             map.enableScrollWheelZoom(value.enableScrollWheelZoom); // 开启鼠标滚轮缩放
         })
     }
