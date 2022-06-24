@@ -5,38 +5,33 @@
 namespace BootstrapBlazor.Components;
 
 /// <summary>
-/// 百度地图配置信息
+/// 基本标记物
 /// </summary>
-public class BaiduMapOption
+public class BaiduMarker
 {
 
     /// <summary>
-    /// 组件Id
+    /// 标记点名称，回调使用
     /// </summary>
-    public string? Id { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
-    /// 地图Url
+    /// 标记点位置
     /// </summary>
-    public string? MapUrl { get; set; }
+    public MapPoint? Point { get; set; }
 
     /// <summary>
-    /// 中心点坐标
+    /// 图标，为空则不显示
     /// </summary>
-    public MapPoint? Center { get; set; }
+    public BaiduMapIcon? Icon { get; set; }
 
     /// <summary>
-    /// 缩放比例
+    /// 是否启用点击回调，启用则不能弹窗
     /// </summary>
-    public int? Zoom { get; set; }
+    public bool EnableClick { get; set; }
 
     /// <summary>
-    /// 是否开启滚轮缩放，默认为true
+    /// 信息弹窗，当启用回调时无效
     /// </summary>
-    public bool? EnableScrollWheelZoom { get; set; }
-
-    /// <summary>
-    /// 覆盖物列表
-    /// </summary>
-    public List<BaiduMarker>? Markers { get; set; }
+    public BaiduMapInfoWindow? InfoWindow { get; set; }
 }

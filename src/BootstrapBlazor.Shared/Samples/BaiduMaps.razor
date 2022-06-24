@@ -1,5 +1,31 @@
 ﻿@page "/baidumaps"
-<h3>BaiduMaps</h3>
+@inject VersionService VersionManager
 
-<BaiduMap Ak="u1MD7sjDBc5EUTUnAYGOAueQruwdn5bD" Center="new MapPoint(116.404, 39.915)" Zoom="12" style="width:800px;height:800px"></BaiduMap>
+<h3>百度地图</h3>
+
+<h4>用于调用百度地图完成最基本的操作</h4>
+
+<p><b>注意事项：</b></p>
+
+<p>本组件依赖于 <a href='https://www.nuget.org/packages?q=BootstrapBlazor.BaiduMap' target='_blank'><code>BootstrapBlazor.BaiduMap</code></a>，使用本组件时需要引用其组件包</p>
+
+<p><b>Nuget 包安装</b></p>
+
+<p>使用 <a href='https://www.nuget.org/packages?q=BootstrapBlazor.BaiduMap' target='_blank'>nuget.org</a> 进行 <code>BootstrapBlazor.BaiduMap</code> 组件的安装</p>
+
+<div class="code-label">.NET CLI</div>
+<Pre class="no-highlight">dotnet add package BootstrapBlazor.BaiduMap --version @Version</Pre>
+
+<div class="code-label">PackageReference</div>
+<Pre class="no-highlight">&lt;PackageReference Include="BootstrapBlazor.BaiduMap" Version="@Version" /&gt;</Pre>
+
+<div class="code-label">Package Manager</div>
+<Pre class="no-highlight">Install-Package BootstrapBlazor.BaiduMap -Version @Version</Pre>
+
+<DemoBlock Title="基本用法" Introduction="直接调用百度地图控件" Name="Normal">
+    <Tips>请自行获取百度地图的Ak，不要使用示例程序中的，示例程序中的Ak随时可能失效。</Tips>
+    <BaiduMap Ak="u1MD7sjDBc5EUTUnAYGOAueQruwdn5bD" Center="new MapPoint(116.404, 39.915)" Zoom="14" Markers="@Markers"
+              MarkerClick="MarkerClick" style="width:800px;height:800px"></BaiduMap>
+</DemoBlock>
+
 

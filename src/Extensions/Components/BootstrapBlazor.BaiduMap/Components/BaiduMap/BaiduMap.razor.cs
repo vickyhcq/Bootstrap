@@ -3,6 +3,7 @@
 // Website: https://www.blazor.zone or https://argozhang.github.io/
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace BootstrapBlazor.Components;
 
@@ -36,6 +37,18 @@ public partial class BaiduMap
     [Parameter]
     public bool? EnableScrollWheelZoom { get; set; } = true;
 
+    /// <summary>
+    /// 覆盖物列表
+    /// </summary>
+    [Parameter]
+    public List<BaiduMarker>? Markers { get; set; }
+
+    /// <summary>
+    /// 获得/设置 覆盖物点击事件
+    /// </summary>
+    [Parameter]
+    public EventCallback<string> MarkerClick { get; set; }
+
     private BaiduMapOption Option { get; set; } = new BaiduMapOption();
 
     [NotNull]
@@ -57,6 +70,7 @@ public partial class BaiduMap
         Option.MapUrl = $"//api.map.baidu.com/api?type=webgl&v=1.0&ak={Ak}";
         Option.Id = Id;
         Option.EnableScrollWheelZoom = EnableScrollWheelZoom;
+        Option.Markers = Markers;
     }
 
     /// <summary>
@@ -70,6 +84,20 @@ public partial class BaiduMap
         {
             Module = await JSRuntime.LoadModule<BaiduMap>("./_content/BootstrapBlazor.BaiduMap/js/bootstrap.blazor.baidumap.min.js", this, false);
             await Module.InvokeVoidAsync("bb_baidu_map", MapElement, Option, "init");
+        }
+    }
+
+    /// <summary>
+    /// 覆盖物点击事件回调
+    /// </summary>
+    /// <param name="markerName"></param>
+    /// <returns></returns>
+    [JSInvokable]
+    public async Task Click(string markerName)
+    {
+        if (MarkerClick.HasDelegate)
+        {
+            await MarkerClick.InvokeAsync(markerName);
         }
     }
 }

@@ -10,6 +10,26 @@ namespace BootstrapBlazor.Components;
 public struct MapSize
 {
     /// <summary>
+    /// 构造
+    /// </summary>
+    public MapSize()
+    {
+        Width = null;
+        Height = null;
+    }
+
+    /// <summary>
+    /// 构造
+    /// </summary>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    public MapSize(double width, double height)
+    {
+        Width = width;
+        Height = height;
+    }
+
+    /// <summary>
     /// 宽度
     /// </summary>
     public double? Width { get; set; }
