@@ -22,7 +22,7 @@
     <PackageReference Include="BootstrapBlazor.BaiduOcr" Version="7.*" />
     <PackageReference Include="BootstrapBlazor.BarCode" Version="7.*" />
     <PackageReference Include="BootstrapBlazor.Bluetooth" Version="7.*" />
-    <PackageReference Include="BootstrapBlazor.Chart" Version="7.*" />
+    <!--<PackageReference Include="BootstrapBlazor.Chart" Version="7.*" />-->
     <PackageReference Include="BootstrapBlazor.CherryMarkdown" Version="7.*" />
     <PackageReference Include="BootstrapBlazor.FileViewer" Version="7.*" />
     <PackageReference Include="BootstrapBlazor.FontAwesome" Version="7.*" />
@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BootstrapBlazor\BootstrapBlazor.csproj" />
+    <ProjectReference Include="..\Extensions\Components\BootstrapBlazor.Chart\BootstrapBlazor.Chart.csproj" />
   </ItemGroup>
 
   <ItemGroup>
