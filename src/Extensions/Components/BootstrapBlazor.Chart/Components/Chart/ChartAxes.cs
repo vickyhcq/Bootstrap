@@ -48,7 +48,9 @@ public class ChartAxes
     /// </summary>
     public string Position { get => PositionLeft ? "left" : "right"; }
 
-    
-
+    /// <summary>
+    /// 获得/设置 轴图表类型
+    /// </summary>
+    public string? Type { get; set; }
 
 }

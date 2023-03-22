@@ -158,15 +158,17 @@
                         display: option.options.x.title != null,
                         text: option.options.x.title
                     },
-                    stacked: option.options.x.stacked
+                    stacked: option.options.x.stacked,
+                    type: option.options.x.type
                 },
                 y: {
                     title: {
                         display: option.options.y.title != null,
                         text: option.options.y.title
                     },
-                    stacked: option.options.x.stacked,
-                    position: option.options.y.position
+                    stacked: option.options.y.stacked,
+                    position: option.options.y.position,
+                    type: option.options.y.type
                 }
             };
 
@@ -178,6 +180,7 @@
                     },
                     stacked: option.options.x.stacked,
                     position: option.options.y2.position,
+                    type: option.options.y2.type,
                     ticks: {
                         max: option.options.y2.TicksMax,
                         min: option.options.y2.TicksMin

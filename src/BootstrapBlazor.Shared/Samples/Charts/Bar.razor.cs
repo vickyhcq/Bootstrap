@@ -50,7 +50,7 @@ public partial class Bar
         ds.Options.X.Title = "days";
         ds.Options.Y.Title = "Numerical value";
         ds.Options.X.Stacked = stacked;
-        ds.Options.Y.Stacked = stacked;
+        ds.Options.Y.Type = "line";
         ds.Labels = Enumerable.Range(1, BarDataCount).Select(i => i.ToString());
         for (var index = 0; index < BarDatasetCount; index++)
         {
