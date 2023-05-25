@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BootstrapBlazor\BootstrapBlazor.csproj" />
-    <ProjectReference Include="..\Extensions\Components\BootstrapBlazor.LuckSheet\BootstrapBlazor.ExcelEditor.csproj" />
+    <ProjectReference Include="..\Extensions\Components\BootstrapBlazor.Excel\BootstrapBlazor.Excel.csproj" />
   </ItemGroup>
 
   <ItemGroup>
