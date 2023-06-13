@@ -1,0 +1,31 @@
+﻿@namespace BootstrapBlazor.Components
+@inherits BootstrapModuleComponentBase
+@attribute [JSModuleAutoLoader("./_content/BootstrapBlazor.Graph/Components/GraphView/GraphView.razor.js")]
+
+<div class="d-flex">
+    <h1>Dnd</h1>
+    <div style="
+         width: 200px;
+         height: 300px;
+         padding: 16px;
+         border: 1px solid #f0f0f0;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         user-select: none">
+        <div data-type="rect"
+             style="width: 60px;
+             height: 30px;
+             border: 2px solid #31d0c6;
+             text-align: center ;
+             line-height: 30px;
+             margin: 16px;
+             cursor: move">
+            Rect
+        </div>
+    </div>
+    <div id="@Id">
+
+    </div>
+</div>
+
