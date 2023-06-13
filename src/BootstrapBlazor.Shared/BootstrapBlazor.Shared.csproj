@@ -54,6 +54,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BootstrapBlazor\BootstrapBlazor.csproj" />
+    <ProjectReference Include="..\Extensions\Components\BootstrapBlazor.Graph\BootstrapBlazor.Graph.csproj" />
   </ItemGroup>
 
   <ItemGroup>
