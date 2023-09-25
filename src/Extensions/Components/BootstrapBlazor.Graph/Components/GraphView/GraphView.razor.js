@@ -6,63 +6,146 @@ import Data from '../../../BootstrapBlazor/modules/data.js'
 
 export function init(id) {
     addLink("./_content/BootstrapBlazor.Graph/css/bootstrap-bb-graphview.css")
-    const el = document.getElementById(id);
-    const graph = new X6.Graph({
-        container: el,
-        width: 800,
-        height: 600,
-        panning: true,
-        mousewheel: true,
-        background: {
-            color: '#F2F7FA',
+    var graph = new X6.Graph({
+        container: document.querySelector('.app-content'),
+        grid: true,
+        snapline: {
+            enabled: true,
+            sharp: true,
         },
-        grid: {
-            visible: true,
-            type: 'doubleMesh',
-            args: [
+        scroller: {
+            enabled: true,
+            pageVisible: false,
+            pageBreak: false,
+            pannable: true,
+        },
+    })
+
+    graph.centerContent()
+
+    const stencil = new X6PluginStencil.Stencil({
+        title: 'Components',
+        target: graph,
+        collapsable: true,
+        stencilGraphWidth: 200,
+        stencilGraphHeight: 180,
+        groups: [
+            {
+                name: 'group1',
+                title: 'Group(Collapsable)',
+            },
+            {
+                name: 'group2',
+                title: 'Group',
+                collapsable: false,
+            },
+        ],
+    })
+    const stencilContainer = document.querySelector(".app-stencil");
+    stencilContainer.appendChild(stencil.container)
+
+    const r = new X6.Shape.Rect({
+        width: 70,
+        height: 40,
+        attrs: {
+            rect: { fill: '#31D0C6', stroke: '#4B4A67', strokeWidth: 6 },
+            text: { text: 'rect', fill: 'white' },
+        },
+        ports: {
+            groups: {
+                in: {
+                    position: 'top',
+                    attrs: {
+                        circle: {
+                            magnet: true,
+                            stroke: '#8f8f8f',
+                            r: 5,
+                        },
+                    },
+                },
+                out: {
+                    position: 'bottom',
+                    attrs: {
+                        circle: {
+                            magnet: true,
+                            stroke: '#8f8f8f',
+                            r: 5,
+                        },
+                    },
+                },
+            },
+            items: [
                 {
-                    color: '#eee', // 主网格线颜色
-                    thickness: 1, // 主网格线宽度
+                    id: 'port1',
+                    group: 'in',
                 },
                 {
-                    color: '#ddd', // 次网格线颜色
-                    thickness: 1, // 次网格线宽度
-                    factor: 4, // 主次网格线间隔
+                    id: 'port2',
+                    group: 'in',
+                },
+                {
+                    id: 'port3',
+                    group: 'in',
+                },
+                {
+                    id: 'port4',
+                    group: 'out',
+                },
+                {
+                    id: 'port5',
+                    group: 'out',
                 },
             ],
         },
     })
 
-    const dnd = new X6PluginDnd.Dnd({
-        target: graph,
-    });
-
-    Data.set(id, { graph, dnd })
-
-    console.log(X6)
-    console.log(X6PluginDnd)
-    console.log(X6PluginStencil)
-
-    document.querySelector("[data-type]").addEventListener("mousedown", e => {
-        const node = graph.createNode({
-            shape: "rect",
-            width: 100,
-            height: 40,
-            ports: {
-                items: [
-                    {
-                        id: 'port_1',
-                        group: 'bottom',
-                    },
-                    {
-                        id: 'port_2',
-                        group: 'bottom',
-                    },
-                ],
-            },
-        });
-        dnd.start(node, e);
+    const c = new X6.Shape.Circle({
+        width: 60,
+        height: 60,
+        attrs: {
+            circle: { fill: '#FE854F', strokeWidth: 6, stroke: '#4B4A67' },
+            text: { text: 'ellipse', fill: 'white' },
+        },
     })
+
+    const c2 = new X6.Shape.Circle({
+        width: 60,
+        height: 60,
+        attrs: {
+            circle: { fill: '#4B4A67', 'stroke-width': 6, stroke: '#FE854F' },
+            text: { text: 'ellipse', fill: 'white' },
+        },
+    })
+
+    const r2 = new X6.Shape.Rect({
+        width: 70,
+        height: 40,
+        attrs: {
+            rect: { fill: '#4B4A67', stroke: '#31D0C6', strokeWidth: 6 },
+            text: { text: 'rect', fill: 'white' },
+        },
+    })
+
+    const r3 = new X6.Shape.Rect({
+        width: 70,
+        height: 40,
+        attrs: {
+            rect: { fill: '#31D0C6', stroke: '#4B4A67', strokeWidth: 6 },
+            text: { text: 'rect', fill: 'white' },
+        },
+    })
+
+    const c3 = new X6.Shape.Circle({
+        width: 60,
+        height: 60,
+        attrs: {
+            circle: { fill: '#FE854F', strokeWidth: 6, stroke: '#4B4A67' },
+            text: { text: 'ellipse', fill: 'white' },
+        },
+    })
+
+    stencil.load([r, c, c2, r2.clone()], 'group1')
+    stencil.load([c2.clone(), r2, r3, c3], 'group2')
 }
 
 export function addNode(id, type, args) {
