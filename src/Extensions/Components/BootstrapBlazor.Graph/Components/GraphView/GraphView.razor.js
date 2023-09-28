@@ -23,6 +23,21 @@ export function init(id) {
 
     graph.centerContent()
 
+    graph.on('node:mouseenter', () => {
+        const container = document.querySelector('.app-content')
+        const ports = container.querySelectorAll(
+            '.x6-port-body',
+        )
+        showPorts(ports, true)
+    })
+    graph.on('node:mouseleave', () => {
+        const container = document.querySelector('.app-content')
+        const ports = container.querySelectorAll(
+            '.x6-port-body',
+        )
+        showPorts(ports, false)
+    })
+
     const stencil = new X6PluginStencil.Stencil({
         title: 'Components',
         target: graph,
@@ -51,52 +66,7 @@ export function init(id) {
             rect: { fill: '#31D0C6', stroke: '#4B4A67', strokeWidth: 6 },
             text: { text: 'rect', fill: 'white' },
         },
-        ports: {
-            groups: {
-                in: {
-                    position: 'top',
-                    attrs: {
-                        circle: {
-                            magnet: true,
-                            stroke: '#8f8f8f',
-                            r: 5,
-                        },
-                    },
-                },
-                out: {
-                    position: 'bottom',
-                    attrs: {
-                        circle: {
-                            magnet: true,
-                            stroke: '#8f8f8f',
-                            r: 5,
-                        },
-                    },
-                },
-            },
-            items: [
-                {
-                    id: 'port1',
-                    group: 'in',
-                },
-                {
-                    id: 'port2',
-                    group: 'in',
-                },
-                {
-                    id: 'port3',
-                    group: 'in',
-                },
-                {
-                    id: 'port4',
-                    group: 'out',
-                },
-                {
-                    id: 'port5',
-                    group: 'out',
-                },
-            ],
-        },
+        ports: { ...ports },
     })
 
     const c = new X6.Shape.Circle({
@@ -106,6 +76,7 @@ export function init(id) {
             circle: { fill: '#FE854F', strokeWidth: 6, stroke: '#4B4A67' },
             text: { text: 'ellipse', fill: 'white' },
         },
+        ports: { ...ports },
     })
 
     const c2 = new X6.Shape.Circle({
@@ -115,6 +86,7 @@ export function init(id) {
             circle: { fill: '#4B4A67', 'stroke-width': 6, stroke: '#FE854F' },
             text: { text: 'ellipse', fill: 'white' },
         },
+        ports: { ...ports },
     })
 
     const r2 = new X6.Shape.Rect({
@@ -124,6 +96,7 @@ export function init(id) {
             rect: { fill: '#4B4A67', stroke: '#31D0C6', strokeWidth: 6 },
             text: { text: 'rect', fill: 'white' },
         },
+        ports: { ...ports },
     })
 
     const r3 = new X6.Shape.Rect({
@@ -133,6 +106,7 @@ export function init(id) {
             rect: { fill: '#31D0C6', stroke: '#4B4A67', strokeWidth: 6 },
             text: { text: 'rect', fill: 'white' },
         },
+        ports: { ...ports },
     })
 
     const c3 = new X6.Shape.Circle({
@@ -142,6 +116,7 @@ export function init(id) {
             circle: { fill: '#FE854F', strokeWidth: 6, stroke: '#4B4A67' },
             text: { text: 'ellipse', fill: 'white' },
         },
+        ports: { ...ports },
     })
 
     stencil.load([r, c, c2, r2.clone()], 'group1')
@@ -158,5 +133,90 @@ export function addNode(id, type, args) {
         });
         data.dnd.start(node, args);
     };
+}
+
+const showPorts = (ports, show) => {
+    for (let i = 0, len = ports.length; i < len; i += 1) {
+        ports[i].style.visibility = show ? 'visible' : 'hidden'
+    }
+}
+
+const ports = {
+    groups: {
+        top: {
+            position: 'top',
+            attrs: {
+                circle: {
+                    r: 4,
+                    magnet: true,
+                    stroke: '#5F95FF',
+                    strokeWidth: 1,
+                    fill: '#fff',
+                    style: {
+                        visibility: 'hidden',
+                    },
+                },
+            },
+        },
+        right: {
+            position: 'right',
+            attrs: {
+                circle: {
+                    r: 4,
+                    magnet: true,
+                    stroke: '#5F95FF',
+                    strokeWidth: 1,
+                    fill: '#fff',
+                    style: {
+                        visibility: 'hidden',
+                    },
+                },
+            },
+        },
+        bottom: {
+            position: 'bottom',
+            attrs: {
+                circle: {
+                    r: 4,
+                    magnet: true,
+                    stroke: '#5F95FF',
+                    strokeWidth: 1,
+                    fill: '#fff',
+                    style: {
+                        visibility: 'hidden',
+                    },
+                },
+            },
+        },
+        left: {
+            position: 'left',
+            attrs: {
+                circle: {
+                    r: 4,
+                    magnet: true,
+                    stroke: '#5F95FF',
+                    strokeWidth: 1,
+                    fill: '#fff',
+                    style: {
+                        visibility: 'hidden',
+                    },
+                },
+            },
+        },
+    },
+    items: [
+        {
+            group: 'top',
+        },
+        {
+            group: 'right',
+        },
+        {
+            group: 'bottom',
+        },
+        {
+            group: 'left',
+        },
+    ],
 }
 
