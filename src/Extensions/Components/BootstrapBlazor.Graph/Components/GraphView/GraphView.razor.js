@@ -19,6 +19,70 @@ export function init(id) {
             pageBreak: false,
             pannable: true,
         },
+        embedding: {
+            enabled: true,
+            findParent({ node }) {
+                const bbox = node.getBBox()
+                return this.getNodes().filter((node) => {
+                    const data = node.getData()
+                    if (data && data.parent) {
+                        const targetBBox = node.getBBox()
+                        return bbox.isIntersectWithRect(targetBBox)
+                    }
+                    return false
+                })
+            },
+        },
+        highlighting: {
+            // 连接桩可以被连接时在连接桩外围围渲染一个包围框
+            magnetAvailable: {
+                name: 'stroke',
+                args: {
+                    attrs: {
+                        fill: '#fff',
+                        stroke: '#A4DEB1',
+                        strokeWidth: 4,
+                    },
+                },
+            },
+            // 连接桩吸附连线时在连接桩外围围渲染一个包围框
+            magnetAdsorbed: {
+                name: 'stroke',
+                args: {
+                    attrs: {
+                        fill: '#fff',
+                        stroke: '#31d0c6',
+                        strokeWidth: 4,
+                    },
+                },
+            },
+        },
+        connecting: {
+            allowNode: false,
+            allowBlank: false,
+            highlight: true,
+
+            validateConnection({
+                sourceCell,
+                targetCell,
+                sourceMagnet,
+                targetMagnet,
+            }) {
+                // 不能连接自身
+                if (sourceCell === targetCell) {
+                    return false
+                }
+
+                // 不能重复连线
+                const edges = this.getEdges()
+                const portId = targetMagnet.getAttribute('port')
+                if (edges.find((edge) => edge.getTargetPortId() === portId)) {
+                    return false
+                }
+
+                return true
+            }
+        }
     })
 
     graph.centerContent()
