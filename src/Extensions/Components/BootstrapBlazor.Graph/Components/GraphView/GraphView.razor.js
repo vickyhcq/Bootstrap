@@ -61,7 +61,9 @@ export function init(id) {
             allowNode: false,
             allowBlank: false,
             highlight: true,
-
+            router: {
+                name: 'manhattan',
+            },
             validateConnection({
                 sourceCell,
                 targetCell,
